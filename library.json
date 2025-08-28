@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Love is beautiful",
+    "author": "Jackson Love",
+    "status": {
+      "own": true,
+      "reading": false,
+      "read": false
+    }
+  },
+  {
+    "title": "Painful Love Experience",
+    "author": "Lawrence Love",
+    "status": {
+      "own": true,
+      "reading": false,
+      "read": false
+    }
+  },
+  {
+    "title": "Jack, the playful Idiots",
+    "author": "Jack Lovet",
+    "status": {
+      "own": true,
+      "reading": false,
+      "read": false
+    }
+  }
+]
