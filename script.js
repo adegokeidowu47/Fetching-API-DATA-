@@ -12,51 +12,65 @@ function showToast(message, type) {
     toast.show();
 }
 
+function errorMsg(err, errSolution, errorMsg) {
+    spinner.classList.add('d-none');
+    outputDiv.innerHTML = `<h2 class="btn btn-danger"> ${err}, ${errSolution}</h2>`;
+    showToast(`${errorMsg}, ${errSolution} `, 'danger');
+}
+
 
 // function decleration by getting the  sample text file.
+
 const getTextFIle = () => {
     fetch('sample.txt')
         .then((res) => res.text())
-        .then((data) => outputDiv.innerHTML = data).catch((err) => console.log(err));
+        .then((data) => outputDiv.innerHTML = data)
+        .catch((err) => console.log(err));
+    return;
 }
 
 document.getElementById('getText').addEventListener('click', getTextFIle);
 
 
-// function decleration by getting the  Json text file.
+// function decleration by getting the Json text file.
 
 const getJSONFiles = () => {
+
+    // spinner action in the web page.
     spinner.classList.remove('d-none');
     outputDiv.innerHTML = '';
-
 
     fetch('library.json')
         .then((res) => res.json())
         .then((data) => {
             spinner.classList.add('d-none');
 
-            let output = `<h2 class="mb-4">Library Books</h2>`;
+            let output = `<h2 class="mb-4" > Library Books</h2 > `;
             data.forEach((elem) => {
                 let { title, author, status: { own, reading, read } } = elem;
-                output += `
-                <ul class="list-group mb-4">
+                output += `<ul class="list-group mb-4" >
                     <li class="list-group-item"><strong>Title</strong>: ${title}</li>
                     <li class="list-group-item"><strong>Author</strong>: ${author}</li>
-                    <li class="list-group-item"> <strong>Status</strong>: <oblique>Own: ${own}, Reading: ${reading} & Read: ${read}</oblique> </li>
-                </ul>
-                `
+                    <li class="list-group-item"> <strong>Status</strong>: <span> Own: ${own}, Reading: ${reading} & Read: ${read}</span></li>
+                </ ul>`
             });
+
             outputDiv.innerHTML = output;
             showToast(`Data fetched successfully!`, 'success');
-
         })
-}
+        .catch((err) => {
+            err = "Broken JSON file!"
+            errorMsg(err, "visit your JSON file.", err)
+        });
+    return;
+};
 
 document.getElementById('getJSON').addEventListener('click', getJSONFiles);
 
 
 
 // function decleration by getting the  Posts API DATA file.
+
 const getAPIData = () => {
     spinner.classList.remove('d-none');
     outputDiv.innerHTML = '';
@@ -65,24 +79,25 @@ const getAPIData = () => {
         .then((res) => res.json())
         .then((data) => {
             spinner.classList.add('d-none');
-            let output = `<h2>Posts</h2>`;
+            let output = `< h2 > Posts</ > `;
             data.forEach((elem) => {
                 let { id, title, body } = elem;
-                output += `
-                <div class="card card-body mb-3">
-                    <h2>${id}. ${title}</h2>
-                    <p>${body}</p>
-                </div>
-                `
-            });
+                output += `< div class="card card-body mb-3" >
+                              <h2>${id}. ${title}</h2>
+                              <p>${body}</p>
+                           </ div>`});
+
             outputDiv.innerHTML = output;
             showToast(`Data fetched successfully!`, 'success');
+        }).catch((err) => {
+            errorMsg(err, "Try again or check your internet connection", "Unable to fetch the Data");
         });
 
-    return false;
+    return;
 }
 
 document.getElementById('getPosts').addEventListener('click', getAPIData);
+
 
 
 // By fetching the API data by making a POST request
@@ -98,13 +113,21 @@ const addPost = (e) => {
             'Accept': 'application/json, text/plain, */*',
             'Content-type': 'application/json'
         },
-        body: JSON.stringify({ title: title, body: body })
+        body: JSON.stringify({ title: title, body: body, id: id })
     })
         .then((res) => res.json())
-        .then((data) => console.log(data));
-    showToast(`Data fetched successfully!`, 'success');
-
-    return false;
+        .then((data) => {
+            console.log(data);
+            showToast(`Data fetched successfully!`, 'success');
+            title = '';
+            body = '';
+        })
+        .catch((err) => {
+            err = "Server Error!"
+            errorMsg(err, "Try again or check your internet connection", "Unable to Add post to the Data");
+        });
+    ;
+    return;
 }
 
 

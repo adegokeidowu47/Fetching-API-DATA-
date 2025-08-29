@@ -15,6 +15,14 @@
         #toastCon {
             z-index: 1100;
         }
+
+        #addPost {
+            margin-top: 4rem;
+        }
+
+        span {
+            color: rgb(96, 41, 41);
+        }
     </style>
     <title>Fetch Api Sandbox</title>
 </head>
@@ -30,7 +38,7 @@
         <hr>
         <div>
             <div class="d-flex justify-content-center">
-                <div id="spinner" class="spinner-border d-none" role="status">
+                <div id="spinner" class="spinner-border spi d-none" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
@@ -39,20 +47,18 @@
         <form id="addPost">
             <div class="form-group">
                 <h2 class="mb-4 mt-4">Add Your Post</h2>
-                <input type="text" id="title" placeholder="Title" class="form-control mb-4">
-                <textarea id="body" placeholder="Body" class="form-control mb-4"></textarea>
+                <input type="text" id="title" placeholder="Title" class="form-control mb-4" required>
+                <textarea id="body" placeholder="Body" class="form-control mb-4" required></textarea>
                 <input type="submit" value="Submit" class="btn btn-secondary">
             </div>
 
         </form>
 
-        <div id="toastCon" class="position-fixed top-0 end-0 p-3">
+        <div id="toastCon" class="position-fixed top-0 right-0 p-3">
             <div id="toast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive"
                 aria-atomic="true">
                 <div class="d-flex">
-                    <div class="toast-body" id="toastMessage">
-                        Success message here
-                    </div>
+                    <div class="toast-body" id="toastMessage"></div>
                     <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
                         aria-label="Close"></button>
                 </div>

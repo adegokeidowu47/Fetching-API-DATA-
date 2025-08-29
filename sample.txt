@@ -1,1 +1,25 @@
-I am a sample txt file.
+<p><strong>Web</strong> has been around for more than 25 years now, experiencing euphoric 
+early expansion, an economic-driven bust, an innovation-driven rebirth, and 
+constant evolution along the way. One thing is certain: the web as a communication and commercial medium is here to stay. Not only that, it has found 
+its way onto devices such as smartphones, tablets, TVs, and more.</p> 
+<p>There have 
+never been more opportunities to put web design know-how to use.
+ Through my experience teaching web design courses and workshops, I’ve 
+had the opportunity to meet people of all backgrounds who are interested 
+in learning how to build web pages. Allow me to introduce you to just a few:
+
+<p><em>“I’ve been a print designer for 17 years, and now I am feeling pressure to pro
+vide web design services.”
+ “I’ve been a programmer for years, but I want shift my skills to web develop
+ment because there are good job opportunities in my area.</em>”</p>
+<p><em>“I tinkered with web pages in high school and I think it might be something 
+I’d like to do for a living.”
+ “I’ve made a few sites using themes in WordPress, but I’d like to expand my 
+skills and create custom sites for small businesses.</em>”</p>
+<p><em>Whatever the motivation, the first question is always the same: “Where do I 
+start?” It may seem like there is a mountain of stuff to learn, and it’s not easy 
+to know where to jump in. But you have to start somewhere.</em></p>
+
+
+ Learning Web Design: "A BEGINNER'S GUIDE TO HTML, CSS,  
+JAVASCRIPT, AND WEB GRAPHICS." <em> ~ cited from Web development TextBook by Jennifer Niederst Robbins.</em>
