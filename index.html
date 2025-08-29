@@ -8,8 +8,21 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <style>
         #content {
-            margin-top: 15%;
+            margin-top: 5%;
+            margin-bottom: 5%;
             margin-right: auto;
+            padding: 2rem;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        #btnConatainer {
+            margin-bottom: 2rem;
+        }
+
+        hr {
+            border-top: 1px solid #000;
+            margin-bottom: 2rem;
         }
 
         #toastCon {
@@ -21,7 +34,7 @@
         }
 
         span {
-            color: rgb(96, 41, 41);
+            color: rgb(14, 3, 53);
         }
     </style>
     <title>Fetch Api Sandbox</title>
@@ -30,7 +43,7 @@
 <body>
     <div id="content" class="container justify-content-center align-items-center">
         <h1 class="display-4 mb-4 text-center">FETCH API SandBox</h1>
-        <div class="container d-flex p-12 gap-3">
+        <div id="btnConatainer" class="container d-flex p-12 gap-3">
             <div class="container btn btn-primary" id="getText">Get Text</div>
             <div class="container btn btn-success" id="getJSON">Get JSON</div>
             <div class="container btn btn-warning" id="getPosts">Get API DATA</div>

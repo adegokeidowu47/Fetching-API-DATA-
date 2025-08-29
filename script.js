@@ -22,11 +22,21 @@ function errorMsg(err, errSolution, errorMsg) {
 // function decleration by getting the  sample text file.
 
 const getTextFIle = () => {
+    spinner.classList.remove('d-none');
+    outputDiv.innerHTML = '';
+
     fetch('sample.txt')
         .then((res) => res.text())
-        .then((data) => outputDiv.innerHTML = data)
-        .catch((err) => console.log(err));
-    return;
+        .then((data) => {
+            showToast(`Data fetched successfully!`, 'success');
+            spinner.classList.add('d-none');
+            outputDiv.innerHTML = data
+        })
+        .catch((err) => {
+            err = "Broken Text file!";
+            errorMsg(err, "visit your text file.", err)
+            return;
+        });
 }
 
 document.getElementById('getText').addEventListener('click', getTextFIle);
@@ -79,13 +89,13 @@ const getAPIData = () => {
         .then((res) => res.json())
         .then((data) => {
             spinner.classList.add('d-none');
-            let output = `< h2 > Posts</ > `;
+            let output = `<h2>Posts</h2> `;
             data.forEach((elem) => {
                 let { id, title, body } = elem;
-                output += `< div class="card card-body mb-3" >
+                output += `<div class="card card-body mb-3" >
                               <h2>${id}. ${title}</h2>
                               <p>${body}</p>
-                           </ div>`});
+                           </div>`});
 
             outputDiv.innerHTML = output;
             showToast(`Data fetched successfully!`, 'success');
@@ -106,6 +116,9 @@ const addPost = (e) => {
     e.preventDefault();
     let title = document.getElementById('title').value;
     let body = document.getElementById('body').value;
+    spinner.classList.remove('d-none');
+    outputDiv.innerHTML = '';
+
 
     fetch('https://jsonplaceholder.typicode.com/posts', {
         method: 'POST',
@@ -113,20 +126,26 @@ const addPost = (e) => {
             'Accept': 'application/json, text/plain, */*',
             'Content-type': 'application/json'
         },
-        body: JSON.stringify({ title: title, body: body, id: id })
+        body: JSON.stringify({ title: title, body: body })
     })
         .then((res) => res.json())
         .then((data) => {
+            spinner.classList.add('d-none');
+            document.getElementById('title').value = '';
+            document.getElementById('body').value = '';
+
+
             console.log(data);
             showToast(`Data fetched successfully!`, 'success');
-            title = '';
-            body = '';
+            outputDiv.innerHTML = `<div class="card card-body mb-3" >
+                                    <h2>${data.id}. ${data.title}</h2>
+                                    <p>${body}</p>
+                                </div>`
         })
         .catch((err) => {
             err = "Server Error!"
             errorMsg(err, "Try again or check your internet connection", "Unable to Add post to the Data");
         });
-    ;
     return;
 }
 
